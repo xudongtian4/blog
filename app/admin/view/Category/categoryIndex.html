@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+     
+	
+		   {include file='../public/sidebar.html'}
+
+       <table align="center"  border="1" cellpadding="0" cellspacing="0" width="500" height="300" bgcolor="#EAEAEA">
+       	   <tr>
+       	   	 <th>#ID</th>
+       	   	  <th>名称</th>
+       	   	   <th>下属博文数量</th>
+       	   	    <th>排序</th>
+       	   	      <th>操作</th>
+       	   </tr>
+           {foreach $smarty.session.categories as $cat}
+		   <tr>
+			   	<td>{$cat['id']} </td>
+			   	<td>{str_repeat('----',$cat['level'])} {$cat['c_name']} </td>	
+			   	<td>{$a_count[$cat['id']]|default:0}</td>	
+			   	<td>{$cat['c_sort']} </td>
+			   	<td>
+			   		<a href="index.php?p=admin&c=Category&a=edit&id={$cat.id}">编辑</a>
+			   		<a href="index.php?p=admin&c=Category&a=delete&id={$cat.id}" onClick="return confirm('确认删除：{$cat.c_name}分类？')">删除</a>
+			   	</td>
+		   </tr>
+           {/foreach}
+       </table>
+</body>
+</html>

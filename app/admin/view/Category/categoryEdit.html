@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	   {include file='../public/header.html'}
+       {include file='../public/sidebar.html'}
+       <form action="index.php" method="post">
+ 	<table align="center"  border="1" cellpadding="0" cellspacing="0" width="500" height="320">
+ 	
+ 		<input type="hidden" name="id" value="{$id}">	
+ 		<input type="hidden" name="p" value="admin">
+ 		<input type="hidden" name="c" value="Category">
+ 		<input type="hidden" name="a" value="update">
+ 		
+
+ 		<tr height="40">
+ 			<td colspan="2" align="lift"><h3>编辑分类</h3></td>
+ 		</tr>
+ 		<tr>
+ 			<td><label>名称</label></td>
+ 			<td><input type="text" name="c_name" value="{$smarty.session.categories.{$id}.c_name}"></td>
+ 		</tr>
+
+ 		<tr height="60">
+ 			<td><label>父分类</label></td>
+ 			<td><select name="c_parent_id">
+ 				<option value="0">无</option>
+ 				{foreach $categories as $cat}
+ 				<option value="{$cat.id}"
+          {if $cat.id eq $smarty.session.categories.{$id}.c_parent_id} selected="selected"{/if} >
+ 				{str_repeat('--',$cat.level)}{$cat.c_name}
+ 				</option>
+ 				{/foreach}
+ 			    </select>
+ 			</td>
+ 		</tr>
+
+ 		<tr>
+ 			<td><label>排序</label></td>
+ 			<td><input type="text" name="c_sort" value="{$smarty.session.categories.{$id}.c_sort}"></td>
+ 		</tr>
+        
+        <tr>
+ 			<td colspan="2" align="center"><input type="submit" name="submit"></td>
+ 		</tr>
+
+ 	</table>
+ </form>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>  
+    <div>
+      <!-- start menu -->
+      <div>
+      	<ul>
+      		<li> <a href="index.php?p=admin"><img src="{P}/img/3.jpg" width="16" height="16"/>控制面板</a> </li>
+       
+  {if  $smarty.session.user.u_is_admin}
+      		<!-- 分类管理 -->
+      		<li>
+      			<a href="#" title='分类管理'><img src="#" width="16" height="16"/> 分类管理<img src=""  width="7" height="4"> </a>
+      		
+         
+	      		 <ul>
+                <li> <a href="index.php?c=Category&a=index&p=admin"><img src="{P}/img/3.jpg" width="16" height="16"/>分类列表</a> </li>
+              <li> <a href="index.php?c=Category&a=add&p=admin"><img src="{P}/img/3.jpg" width="16" height="16"/> 添加分类</a> </li>
+             </ul>
+	          </li>
+    {/if}
+      	<!-- 分类管理 -->
+  
+
+      	<!-- 博文管理 -->
+      	  <li>
+      	  	<a href="#" title='博文管理'><img src="#" width="16" height="16"/> 博文管理<img src=""  width="7" height="4"> </a>
+
+      	  	 <ul>
+                <li> <a href="index.php?p=admin&c=Article&a=add"><img src="{P}/img/3.jpg" width="16" height="16"/>添加博文</a> </li>
+      		    <li> <a href="index.php?p=admin&c=Article&a=index"><img src="#" width="16" height="16"/> 博文列表</a> </li>
+      	  	 </ul>
+      	  </li>
+      
+    {if  $smarty.session.user.u_is_admin}
+       <!-- 用户管理 -->
+            <li>
+	            	<a href="#" title='用户管理'><img src="#" width="16" height="16"/> 用户管理<img src=""  width="7" height="4"> </a>
+
+	      	  	 <ul>
+	                <li> <a href="index.php?p=admin&c=User&a=add"><img src="#" width="16" height="16"/>添加用户</a> </li>
+
+	      		    <li>   <a href="index.php?p=admin&c=User&a=index"><img src="#" width="16" height="16"/>用户列表</a> </li>
+	      	  	 </ul>
+            </li>
+
+           <!-- 评论管理 -->
+                    <li> <a href="index.php?p=admin&c=Comment"> <img src="{P}/img/4.jpg" width="16" height="16"/>评论列表</a> </li>
+      {/if}
+        
+        </ul>
+       </div>
+      <!-- end sidemenu -->
+    </div>
+</body>
+</html>

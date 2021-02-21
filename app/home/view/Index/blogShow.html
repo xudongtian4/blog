@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>    <h1>博文内容</h1>
+	      <div align="right"> <a href="index.php">回到首页 </a></div>
+	        <div>
+	        	 <h2 align="center">{$article.a_title}</h2>
+	        	<table align="center" border="0" cellpadding="1" cellspacing="0" width="800" height="50" >
+	        		<tr >
+	        			<td width="50">
+	        				<span ><i><a href="index.php?p=admin">{$article.a_author} </a></i></span>
+	        			</td>
+
+	        			<td width="30" align="center"> 
+	        				<span>在</span>
+	        			</td>
+
+	        			<td width="80" align="center">
+	        				<span>{$smarty.session.categories[$article['c_id']].c_name}</span>
+	        			</td>
+
+	        			<td width="80" align="center">
+	        				<span>下发布</span>
+	        			</td>
+
+	        			<td align="right" >
+	        				<span>评论{count($comments)}</span>
+	        			</td>
+
+	        			<td width="120" align="right">
+	        				<span> {date('Y:m:d',$article.a_time)} </span>
+	        			</td>
+
+	        		</tr>
+	        	</table>
+            </div>
+            <div align="center">
+            	<img src="{if $article.a_img}{URL}uploads/{$article.a_img}{else}{P}/img/4.jpg{/if}">
+            </div>
+            <div align="center"><p>{$article.a_content}</p></div>
+
+           
+            <!-- <用户评论> -->
+	            <div><h4>共有评论{count($comments)}条</h4> </div>
+
+	     {foreach $comments as $com}
+		            <div>
+			            <span><a href="index.php?p=admin">{$com.u_username} </a> </span>
+			             <span>{date('d-m-Y',$com.c_time)}</span>
+                          <span>
+               {if isset($smarty.session.user)}
+                	<a href="index.php?c=Comment&a=praise&id={$com.id}&a_id={$article.id}">赞{$com.praise}</a> 
+                	<a href="index.php?c=Comment&a=step&id={$com.id}&a_id={$article.id}">踩{$com.step}</a>
+                {/if}
+                           </span>
+			              <p>{$com.c_comment}</p>
+		              </div>
+	     {/foreach}
+
+                <!-- 发布评论 -->
+		        <div >
+	        	<h4>发布新评论</h4>
+		         <form action="index.php?c=Comment&a=insert&a_id={$article.id}"  method="post">
+		            	<textarea name="c_comment" rows="7" placeholder="请输入你的评论"></textarea>
+		            	  {if isset($smarty.session.user)}
+	                         <input type="submit" value="发布">
+	                      {else}
+	                  <input type="button" onclick="JavaScript:return false"  value="请先登录">
+	                      {/if}
+	             </form>
+                </div>
+</body>
+</html>

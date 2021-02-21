@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	{include file='../public/header.html'}
+	{include file='../public/sidebar.html'}
+ <form action="index.php?p=admin&c=Category&a=insert" method="post">
+ 	<table align="center"  border="1" cellpadding="0" cellspacing="0" width="500" height="320">
+ 		<tr height="40">
+ 			<td colspan="2" align="lift"><h3>添加分类</h3></td>
+ 		</tr>
+ 		<tr>
+ 			<td><label>名称</label></td>
+ 			<td><input type="text" name="c_name" value=""></td>
+ 		</tr>
+
+ 		<tr height="60">
+ 			<td><label>父分类</label></td>
+ 			<td><select name="c_parent_id">
+ 				<option value="0">无</option>
+ 				{foreach $smarty.session.categories as $cat}
+ 				<option value="{$cat.id}"> {str_repeat('--',$cat.level)}{$cat.c_name}</option>
+ 				{/foreach}
+ 			    </select>
+ 			</td>
+ 		</tr>
+
+ 		<tr>
+ 			<td><label>排序</label></td>
+ 			<td><input type="text" name="c_sort" value=""></td>
+ 		</tr>
+        
+        <tr>
+ 			<td colspan="2" align="center"><input type="submit" name="submit"></td>
+ 		</tr>
+
+ 	</table>
+ </form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>  
+	   {include file='../public/header.html'}
+	   {include file='../public/sidebar.html'}
+	    <form action="index.php?p=admin&c=User&a=update" method="post" enctype="multipart/form-data">
+	    <input type="hidden" name="id" value={$user.id}>	
+
+	   <table align="center"  border="1" cellpadding="0" cellspacing="0" width="300" height="200">
+ 	    <tr>
+ 	   	   <td colspan="3">编辑用户</td>
+ 	    </tr>
+
+ 	     <tr>
+ 	    	<td>用户名</td>
+ 	    	<td colspan="2"> <input type="text" name="u_username"  value="{$user.u_username}"></td>
+ 	     </tr>
+
+ 	      <tr>
+ 	    	<td>密码</td>
+ 	    	<td colspan="2"> <input type="password" name="u_password" value="{$user.u_password}"></td>
+ 	     </tr>
+
+ 	      <tr>
+ 	      	<td>角色</td>
+ 	      	<td colspan="2"><input type="radio" name="u_is_admin" value="0" {if $user.u_is_admin eq 0}checked="checked" {/if}>普通用户
+ 	      		            <input type="radio" name="u_is_admin" value="1" {if $user.u_is_admin eq 1}checked="checked" {/if}>管理员
+
+ 	      	</td>
+ 	      </tr>
+
+ 	      <tr><td colspan="3" align="center"><input type="submit" name="submit" value="提交"></td></tr>
+ 	 </table>
+ </form>
+</body>
+</html>

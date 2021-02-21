@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div>
+		   {include file='../public/header.html'}
+	
+		   {include file='../public/sidebar.html'}
+          <div>
+          	<h2>控制面板</h2>
+          	<p>小标题</p>
+          </div>
+	</div>
+     <div>
+     	<h2>提示</h2>
+     	   <ul>
+     		 <li>使用左侧的导航菜单栏进入功能</li>
+             <li>使用右上角的退出按钮退出管理后台</li>
+     	   </ul>
+     	   <!-- <a href="#">关闭</a> -->
+     </div>
+
+     <div>
+     	<h2>提示</h2>
+     	<ul>
+     		<li>1.您当前使用是ip:{$smarty.server.REMOTE_ADDR}</li>
+     		<li>2.PHP版本:{PHP_VERSION}</li>
+     		<li>3.浏览器:{$smarty.server.HTTP_USER_AGENT}</li>
+     	</ul>
+     	<!-- <a href="#">关闭</a> -->
+     </div>
+
+     <div>
+     	<span> <img src="{P}/img/4.jpg" width="44" height="32"> 
+     		<b>用户数{$count}</b> 
+     	</span>
+    {include file='../public/footer.html'}
+</body>
+</html>

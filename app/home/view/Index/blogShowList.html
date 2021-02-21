@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body> 
+    <style>
+        body 
+       {
+            text-align: center;
+            background-color: burlywood;
+        }
+        .signform {
+            font-family: 微软雅黑;
+            position: fixed;
+            background-color: white;
+            top: 20%;
+            left: 30%;
+            width: 500px;
+            height: 400px;
+            border-radius: 1em;
+            text-align: center;
+            z-index: 999;
+        }
+        #registerform {
+            height: 450px;
+        }
+        .signclose {
+            cursor: pointer;
+            float: right;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            height: 35px;
+            width: 35px;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        #registerloading{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            left: 410px;
+            top: 90px;
+        }
+        .signinput {
+            text-align: center;
+            border-radius: 0.2em;
+            width: 280px;
+            height: 45px;
+            border: none;
+            background-color:#f2f2f2;
+            font-size: 28px;
+        }
+        .signinput::-webkit-input-placeholder {
+            font-size: 26px;
+        }
+        .userdiv {
+            position: relative;
+            margin-top: 80px;
+        }
+        .pwddiv {
+            position: relative;
+            margin-top: 20px;
+        }
+        .postdiv {
+            position: relative;
+            margin-top: 20px;
+        }
+        .postdiv button {
+            cursor: pointer;
+            color: white;
+            font-size: 26px;
+            border: none;
+            border-radius: 0.4em;
+            width: 280px;
+            height: 45px;
+            background-color:#4CAF50;
+        }
+    </style>
+  
+        </head>
+         
+     <SCRIPT language="javascript">
+                function Display1(sid){
+                which = eval("menu_item" + sid);
+                if (which.style.display == "none"){
+                eval("menu_item" + sid + ".style.display=\"\";");
+                }else{
+                eval("menu_item" + sid + ".style.display=\"none\";");
+                }
+             }
+            
+             
+     </SCRIPT>
+
+     <SCRIPT language="javascript">
+                function Display2(sid){
+                which = eval("menu_reg" + sid);
+                if (which.style.display == "none"){
+                eval("menu_reg" + sid + ".style.display=\"\";");
+                }else{
+                eval("menu_reg" + sid + ".style.display=\"none\";");
+                }
+             }
+     </SCRIPT>
+
+    <div align="right">
+        {if isset($smarty.session.user)}<a href="index.php?a=out&c=User">退出登录</a>
+        <a href="index.php?p=admin">{$smarty.session.user.u_username}</a>
+        {else}<input type="button"  value="登录" onClick="Display1(1)">
+        {/if}
+    </div>
+    <!--  加载登录表单 -->
+ <div>
+  <form  id="menu_item1" name="form" action="index.php?c=User&a=check" method="post" style="display: none">
+
+     <table background="" align="center"  border="0" cellpadding="1" cellspacing="0" width="300" height="200" bgcolor="#FF42426F">
+       <tr>
+         <td align="center"> 
+            <h4>用户登录</h4> 
+         </td> 
+       </tr>
+
+        <tr>
+         <td align="center"> 
+            用户名 &nbsp<input type="text" name="u_username" value="" placeholder="请输入用户名"> 
+         </td> 
+       </tr>
+        
+        <tr>
+         <td align="center"> 
+         密    &nbsp码 &nbsp <input type="text" name="u_password" value="" placeholder="请输入密码"> 
+         </td> 
+       </tr>    
+
+        <tr>
+         <td align="center"> 
+            <input type="submit" value="登录">
+         </td> 
+       </tr>    
+            <tr align="left"><td>新用户?<input type="button"  value="立即注册" onClick="Display2(1)"></td></tr>
+      </table>
+    </form>
+ </div>
+
+ <!-- 加载注册表单 -->
+    <div>
+         <form id="menu_reg1" action="index.php?c=User&a=regist" method="post" style="display:none">
+            <table background="" align="center"  border="0" cellpadding="1" cellspacing="0" width="300" height="200" bgcolor=" #FF00FFFF">
+       <tr>
+             <td align="center"> 
+                <h4>用户注册</h4> 
+             </td> 
+       </tr>
+
+        <tr>
+             <td align="center"> 
+              <input type="text" name="u_username" value="" placeholder="请输入用户名"> 
+             </td> 
+       </tr>
+        <tr>
+             <td align="center"> 
+             <input type="text" name="u_password" value="" placeholder="请输入密码"> 
+             </td> 
+       </tr>   
+        <tr>
+             <td><img  src="index.php?c=User&a=captcha" width="200" height="40" onclick="this.src='index.php?p=home&c=User&a=captcha&'+Math.random()">
+             </td>
+       </tr>   
+        <tr>
+             <td align="center"> 
+              <input type="text" name="captcha" value="" placeholder="请您填写邮件验证码"> 
+             </td> 
+       </tr>  
+
+        <tr>
+             <td align="center"> 
+                <input type="submit" value="注册">
+             </td> 
+       </tr>    
+            <tr align="left"><td>老用户?<input type="button"  value="立即登录" onClick="Display1(1)"></td></tr>
+      </table>
+            
+        </form>
+    </div>
+
+ 
+ <!--   检索内容 -->
+
+	    <h3>按标题检索</h3> 
+	    <form action="index.php" method="post"> 
+         <input type="text" name="a_title" value="" placeholder="请输入检索内容">
+         <input type="submit" value="检索">
+	    </form>
+    
+		 <h3>按分类检索</h3>
+  {foreach $smarty.session.categories as $cat}
+        <li><a href="index.php?c_id={$cat.id}"> {str_repeat('--',$cat.level)}{$cat.c_name}&nbsp<span>{$cat_count[$cat.id]|default:0}</span></a></li>
+  {/foreach}
+
+<!--  博文内容 -->
+  <h3 align="center">博文内容</h3>
+  {foreach $articles as $art}
+      <table background="" align="center"  border="0" cellpadding="0" cellspacing="0" width="450" height="300" bgcolor="#EAEAEA">
+      <tr>
+      	  <td>
+	     <span><a href="">{$art.a_author} </a></span>
+	     <span>在</span>
+	     <span>{$smarty.session.categories[$art.c_id].c_name}</span>
+	     <span>下发布</span>
+
+	     <span><a href="">评论{$art.c_count|default:0}条</a></span>
+
+	     <span>{date('Y年m月d日',$art.a_time)}</span>
+	     <h3>{$art.a_title}</h3>
+	     <p>{$art.a_content}</p>
+	     <a href="index.php?c=Index&a=detial&id={$art.id}">点击阅读更多</a>
+	   </td>
+      </tr>
+     </table>
+  {/foreach}
+               <div align="center">{$pagestr}</div>
+
+ <!-- <显示最新博文> -->
+
+    <h3>最新博文</h3>
+    {foreach $news as $new}
+		    <div>
+		    	<a href="index.php?c=Index&a=detial&id={$new.id}"><img src="{if $new.a_img_thumb}{URL}uploads/{$new.a_img_thumb}{else}{P}/img/4.jpg{/if}"></a>
+		    </div>
+
+		    <div><a href="index.php?c=Index&a=detial&id={$new.id}">{$new.a_title}</a></div>
+    {/foreach}
+
+
+</body>
+</html>
+
